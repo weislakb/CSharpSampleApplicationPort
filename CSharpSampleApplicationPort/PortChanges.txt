@@ -1,0 +1,634 @@
+﻿/*
+Need to re-design:
+dlgAlgoParams
+dlgComboOrderLegs
+dlgMktDepth
+dlgSmartComboRoutingParams
+
+Issue with AxMSFlexGrid control
+
+FOR ALL BUTTON METHODS:
+Double-click the button on the form designer and then copy and paste the corresponding
+code from the method implementation below.  This will ensure the proper event binding
+code is generated in the .designer.cs files for each form.
+
+FOR ALL FORM_LOAD METHODS:
+Double-click the title bar of the form in the designer and then copy and paste the
+corresponding code from the method implmentation below.  This ensure proper event 
+binding is created by the editor.
+
+FOR ALL READ-ONLY FIELDS:
+Fields are made read-only by only implementing a get accessor.  No read-only tag
+needs to be specified.
+*/
+#BEGIN
+//************************************************************************************
+//dlgAlgoParams
+/*
+Rewrite so that the algoStrategy is a combobox with applicable algos
+Add a method to update the datagridview controller with the appropriate tags for the 
+selected algo
+Also, make it so that if a user clicks a row, the text fields change to that
+information so the user can edit the value (make the tag text box read-only)
+*/
+/*
+    private string m_algoStrategy;
+    Private TWSLib.ITagValueList m_algoParams;
+    Private AxTWSLib.AxTws m_tws;
+
+    // ===============================================================================
+    // Get/Set Properties
+    // ===============================================================================
+    public string algoStrategy //removed ReadOnly
+    {
+        get { return m_algoStrategy; }
+    }
+
+    public TWSLib.ITagValueList algoParams //removed ReadOnly
+    {
+        get { return m_algoParams; }
+    }
+
+    // ===============================================================================
+    // Public Methods
+    // ===============================================================================
+    public void init(string algoStrategy, TWSLib.ITagValueList algoParams, ref AxTWSLib.AxTws tws)
+    {
+        If (grdParams.Rows = 0) Then
+            Call grdParams.AddItem("Param" & vbTab & "Value")
+            ' better way to convert pixels -> twips?
+            Dim grdWidth As Integer
+            grdWidth = grdParams.Width * 15
+            Call grdParams.set_ColWidth(0, grdWidth * 0.4)
+            Call grdParams.set_ColWidth(1, grdWidth - grdParams.get_ColWidth(0) - 100)
+        End If
+
+        m_tws = tws
+
+        txtStrategy.Text = algoStrategy
+
+        If Not algoParams Is Nothing Then
+
+            Dim Count As Long
+            Dim iLoop As Long
+            Dim insertPos As Long
+
+            Count = algoParams.Count
+            For iLoop = 0 To Count - 1 Step 1
+
+                insertPos = grdParams.Rows
+
+                Dim param As TWSLib.ITagValue
+                param = algoParams.Item(iLoop)
+
+                Dim row As String
+
+                With param
+                    row = .tag & vbTab & .value
+                End With
+
+                grdParams.AddItem(row, insertPos)
+
+            Next iLoop
+        End If
+    }
+
+    ' ===============================================================================
+    ' Form Events
+    ' ===============================================================================
+    Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
+
+        m_algoStrategy = txtStrategy.Text
+
+        If (m_algoStrategy <> "") Then
+
+            Dim iLoop As Long
+            Dim Count As Long
+
+            Count = grdParams.Rows
+
+            If (Count > 1) Then
+
+                m_algoParams = m_tws.createTagValueList()
+
+                For iLoop = 1 To Count - 1 Step 1
+
+                    grdParams.Row = iLoop
+
+                    Dim tag As String
+                    Dim value As String
+
+                    grdParams.Col = 0
+                    tag = grdParams.Text
+
+                    grdParams.Col = 1
+                    value = grdParams.Text
+
+                    Dim param As TWSLib.ITagValue
+                    param = m_algoParams.Add(tag, value)
+
+                Next iLoop
+
+            End If
+        End If
+
+        m_tws = Nothing
+
+        Me.DialogResult = System.Windows.Forms.DialogResult.OK
+        Me.Close()
+
+    End Sub
+
+    Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click
+
+        m_tws = Nothing
+
+        Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.Close()
+
+    End Sub
+
+    '--------------------------------------------------------------------------------
+    ' Adds a param to the list
+    '--------------------------------------------------------------------------------
+    Private Sub cmdAddParam_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdAddParam.Click
+
+        Dim insertPos As Long
+        Dim row As String
+
+        insertPos = grdParams.Rows
+        row = txtParam.Text & vbTab & txtValue.Text
+
+        grdParams.AddItem(row, insertPos)
+
+    End Sub
+
+    '--------------------------------------------------------------------------------
+    ' Removes a param from the list
+    '--------------------------------------------------------------------------------
+    Private Sub cmdRemoveParam_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdRemoveParam.Click
+
+        Dim selRowStart, selRowEnd As Long
+
+        ' get the current rows selection if any
+        selRowStart = grdParams.Row
+        selRowEnd = grdParams.RowSel
+
+        If selRowStart > selRowEnd Then
+            Dim temp As Long
+            temp = selRowStart
+            selRowStart = selRowEnd
+            selRowEnd = temp
+        End If
+
+        Dim iLoop As Long
+
+        For iLoop = selRowEnd To selRowStart Step -1
+            If Not iLoop = 0 Then
+                grdParams.RemoveItem(iLoop)
+            End If
+        Next iLoop
+
+    End Sub
+*/
+//************************************************************************************
+//dlgComboOrderLegs
+
+//************************************************************************************
+//dlgConnect
+	// ===============================================================================
+	// Private Members
+	// ===============================================================================
+	private string m_hostIP;
+	private int m_port;
+	private int m_clientId;
+	private bool m_ok;
+	
+	// ===============================================================================
+	// Get/Set Properties
+	// ===============================================================================
+	public string hostIP //removed ReadOnly
+    {
+		get { return m_hostIP; }
+	}
+	
+	public int port
+	{
+		get { return m_port; }
+	}
+	
+	public int clientId
+	{
+		get { return m_clientId; }
+	}
+	
+	public bool ok
+	{
+		get { return m_ok; }
+	}
+	
+	// ========================================================
+	// Button Events
+	// ========================================================
+	private void cmdOK_Click()
+    {
+		m_hostIP = txtHostIP.Text;
+		m_port = Convert.ToInt32(txtPort.Text);
+		m_clientId = Convert.ToInt32(txtClientId.Text);
+		m_ok = true;
+		
+		this.Hide();
+    }
+	
+	private void cmdCancel_Click()
+    {
+		m_ok = false;
+		this.Hide();
+	}
+//************************************************************************************
+//dlgExecFilter
+	// ========================================================
+	// Member variables
+	// ========================================================
+    private TWSLib.IExecutionFilter m_execFilter;
+
+    private int m_reqId;
+	private bool m_ok;
+	
+	// ========================================================
+	// Get/Set Methods
+	// ========================================================
+
+    public int reqId //removed ReadOnly
+    {
+		get { return m_reqId; }
+	}
+    public TWSLib.IExecutionFilter execFilter //removed ReadOnly
+    {
+		get { return m_execFilter; }
+	}
+    public bool ok //removed ReadOnly
+    {
+		get { return m_ok; }
+	}
+
+    // ===============================================================================
+    // Public Methods
+    // ===============================================================================
+    public void init()
+    {
+        m_execFilter = execFilter;
+
+        txtClientId.text = execFilter.clientId;
+        txtAcctCode.text = execFilter.acctCode;
+        txtTime.text = execFilter.time;
+        txtSymbol.text = execFilter.symbol;
+        txtSecType.text = execFilter.secType;
+        txtExchange.text = execFilter.exchange;
+        txtAction.text = execFilter.side;
+
+    }
+
+    // ========================================================
+    // Button Events
+    // ========================================================
+    private void cmdOK_Click()
+    {
+        m_reqId = Text2Int(txtReqId.Text)
+
+        m_execFilter.clientId = Text2Int(txtClientId.Text)
+        m_execFilter.acctCode = txtAcctCode.Text
+        m_execFilter.time = txtTime.Text
+        m_execFilter.symbol = txtSymbol.Text
+        m_execFilter.secType = txtSecType.Text
+        m_execFilter.exchange = txtExchange.Text
+        m_execFilter.side = txtAction.Text
+
+        m_ok = true;
+        this.Hide();
+    }
+
+    private void cmdCancel_Click()
+    {
+        m_ok = false;
+        this.Hide();
+    }
+
+    private void dlgExecFilter_Load()
+    {
+        m_reqId = 0;
+    }
+    /*
+    Might be good to rewrite this using If then and int.tryparse(string)
+    Does this also need to include validataion
+    */
+    private int Text2Int(ref string text)
+    {
+        if (string.IsNullOrEmpty(text))
+        {
+            return 0;
+        } else
+        {
+            return int.Parse(text);
+        }
+    }
+
+//************************************************************************************
+//dlgFinancialAdvisor
+    private Utils m_utils;
+    private bool m_ok;
+    public Object aliasesXML, groupsXML, profilesXML, CRSTR;
+    public string CRLFSTR;
+    // ========================================================
+    // Button Events
+    // ========================================================
+    private void cmdClose_Click()
+    {
+        // clear any existing list details
+        m_ok = true;
+        this.Hide();
+    {
+
+    // ========================================================
+    // Public methods
+    // ========================================================
+
+    public void init(Utils utilities, string faGroupXML, string faProfilesXML, string faAliasesXML)
+    {
+        m_utils = utilities;
+        CRSTR = (char)10;  //verify cast output will be equivalent to Chr() output
+        CRLFSTR = (char)13 + (char)10; //verify cast output will be equivalent to Chr() output
+        lstGroups.Text = faGroupXML.Replace(CRSTR, CRLFSTR);
+        lstProfiles.Text = faProfilesXML.Replace(CRSTR, CRLFSTR);
+        lstAliases.Text = faAliasesXML.Replace(CRSTR, CRLFSTR);
+        m_ok = false;
+    }
+    public Object ok()
+    {
+        //Figure out why this returns type object rather than type bool
+        groupsXML = lstGroups.Text.Replace(CRLFSTR, CRSTR);
+        profilesXML = lstProfiles.Text.Replace(CRLFSTR, CRSTR);
+        aliasesXML = lstAliases.Text.Replace(CRLFSTR, CRSTR);
+        return m_ok;
+    }
+//************************************************************************************
+//dlgLogConfig
+	// ===============================================================================
+	// Public Members
+	// ===============================================================================
+	public enum LOG_LEVEL
+    {
+		Sys = 1,
+		Err,
+		Warn,
+		Info,
+		Detail
+	}
+	
+	// ===============================================================================
+	// Private Members
+	// ===============================================================================
+	private short m_serverLogLevel;
+	private bool m_ok;
+	
+	// ===============================================================================
+	// Get/Set Properties
+	// ===============================================================================
+	public short serverLogLevel //removed ReadOnly
+    {
+        get { return m_serverLogLevel; }
+    }
+	public bool ok //removed ReadOnly
+	{
+        get { return m_ok; }
+	}
+
+	// ========================================================
+	// Private Methods
+	// ========================================================
+	private void dlgLogConfig_Load()
+	{
+        cmbServerLogLevel.Items.Add(("System"));
+		cmbServerLogLevel.Items.Add(("Error"));
+		cmbServerLogLevel.Items.Add(("Warning"));
+		cmbServerLogLevel.Items.Add(("Information"));
+		cmbServerLogLevel.Items.Add(("Detail"));
+		
+		cmbServerLogLevel.SelectedIndex = LOG_LEVEL.Err - 1; // Default TWS log level is ERROR
+	}
+	
+	// ========================================================
+	// Button Events
+	// ========================================================
+	private void OKButton_Click()
+    {
+		m_serverLogLevel = cmbServerLogLevel.SelectedIndex + 1;
+		m_ok = true;
+		
+		this.Hide();
+	}
+	
+	private void CancelButton_Renamed_Click()
+    {
+		m_ok = false;
+		this.Hide();
+    }
+//************************************************************************************
+//dlgMktDepth
+//************************************************************************************
+//dlgNewsBulletins
+	//================================================================================
+	// Private Members
+	//================================================================================
+	private bool m_subscribe;
+	private bool m_allMsgs;
+	private bool m_ok;
+	
+	// ========================================================
+	// Get/Set Methods
+	// ========================================================
+	public bool subscribe //remove ReadOnly
+	{
+        get { return m_subscribe; }
+	}
+	
+	public bool allMsgs //remove ReadOnly
+	{
+        get { return m_allMsgs; }
+	}
+	
+	public bool ok //remove ReadOnly
+    {
+        get { return m_ok; }
+	}
+	//================================================================================
+	// Button Events
+	//================================================================================
+	
+	//--------------------------------------------------------------------------------
+	//   Aborts the news bulletin request and hides this dialog
+	//--------------------------------------------------------------------------------
+	private void cmdClose_Click()
+    {
+		m_ok = false;
+		this.Hide();
+	}
+	
+	//--------------------------------------------------------------------------------
+	//   Subscribes to IB news bulletins. When subscribing users can get all the existing
+	//   days messages and will be notified of new messages
+	//--------------------------------------------------------------------------------
+	private void cmdSubscribe_Click()
+    {
+		m_ok = true;
+		m_subscribe = true;
+		m_allMsgs = (optAllMsgs.Checked = true);
+		this.Hide();
+    }
+	
+	//--------------------------------------------------------------------------------
+	//   Unsubscribes to news bulletins so users will not receive IB new bulletin
+	//   notifications.
+	//--------------------------------------------------------------------------------
+	private void cmdUnsubscribe_Click()
+    {
+		m_ok = true;
+		m_subscribe = false;
+		this.Hide();
+	}
+	
+	//--------------------------------------------------------------------------------
+	//   Default to the 'new messages only' subscription option if not is specified.
+	//--------------------------------------------------------------------------------
+	private void dlgNewsBulletins_Load()
+    {
+		optNewMsgs.Checked = true;
+	}
+//************************************************************************************
+//dlgOrder
+//************************************************************************************
+//dlgOrderAttribs
+//************************************************************************************
+//dlgScanner
+//************************************************************************************
+//dlgServerResponse
+//************************************************************************************
+//dlgSharesAlloc
+	// ===============================================================================
+	// Private Members
+	// ===============================================================================
+	private bool m_ok;
+	private string m_faGroup;
+	private string m_faMethod;
+	private string m_faPercentage;
+	private string m_faProfile;
+	public string faGroup
+    {
+		get { return m_faGroup; }
+	}
+	public string faMethod
+	{
+		get { return m_faMethod; }
+	}
+	public string faPercentage
+	{
+		get { return m_faPercentage; }
+	}
+	public string faProfile
+	{
+		get { return m_faProfile; }
+	}
+	public bool ok
+	{
+		get { return m_ok; }
+	}
+	
+	// ========================================================
+	// Button Events
+	// ========================================================
+	private void cmdOK_Click()
+    {
+		m_faGroup = txtFaGroup.Text;
+		m_faMethod = txtFaMethod.Text;
+		m_faPercentage = txtFaPercentage.Text;
+		m_faProfile = txtFaProfile.Text;
+		m_ok = true;
+		this.Hide();
+	}
+	
+	private void cmdCancel_Click()
+    {
+		m_ok = false
+		this.Hide();
+	}
+	// ========================================================
+	// Public Methods
+	// ========================================================
+	public void init(ref string acctsList)
+	{
+    //What goes here???
+	}
+//************************************************************************************
+//dlgSmartComboRoutingParams
+//************************************************************************************
+//dlgUnderComp
+    // ========================================================
+    // Member variables
+    // ========================================================
+    private TWSLib.IUnderComp m_underComp;
+
+    // ===============================================================================
+    // Public Methods
+    // ===============================================================================
+    public void init(TWSLib.IUnderComp underComp)
+    {
+        m_underComp = underComp;
+        
+        txtConId.text = underComp.conId;
+        txtDelta.text = underComp.delta;
+        txtPrice.text = underComp.price;
+    }
+    
+    // ========================================================
+    // Button Events
+    // ========================================================
+    private void cmdOK_Click()
+    {
+
+        m_underComp.conId = txtConId.Text;
+        m_underComp.delta = txtDelta.Text;
+        m_underComp.price = txtPrice.Text;
+
+
+        m_underComp = null; //Is this needed since .NET does GC?
+
+        this.DialogResult = System.Windows.Forms.DialogResult.OK; //Verify what this does
+        this.Close();
+
+    }
+
+    private void cmdReset_Click()
+    {
+
+        m_underComp.conId = 0;
+        m_underComp.delta = 0;
+        m_underComp.price = 0;
+
+        m_underComp = null; //Is this needed since .NET does GC?
+
+        this.DialogResult = System.Windows.Forms.DialogResult.Abort; //Verify what this does
+        this.Close();
+
+    }
+
+    private void cmdCancel_Click()
+    {
+
+        m_underComp = null //Is this needed since .NET does GC?
+
+        this.DialogResult = System.Windows.Forms.DialogResult.Cancel; //Verify what this does
+        this.Close();
+
+    }
+//************************************************************************************
+#END
