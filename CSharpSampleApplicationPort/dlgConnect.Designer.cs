@@ -51,6 +51,7 @@
             this.cmdOk.TabIndex = 3;
             this.cmdOk.Text = "Ok";
             this.cmdOk.UseVisualStyleBackColor = false;
+            this.cmdOk.Click += new System.EventHandler(this.cmdOk_Click);
             // 
             // cmdCancel
             // 
@@ -65,6 +66,7 @@
             this.cmdCancel.TabIndex = 4;
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
+            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
             // txtPort
             // 
@@ -77,7 +79,7 @@
             this.txtPort.MaxLength = 0;
             this.txtPort.Name = "txtPort";
             this.txtPort.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtPort.Size = new System.Drawing.Size(241, 19);
+            this.txtPort.Size = new System.Drawing.Size(241, 20);
             this.txtPort.TabIndex = 1;
             this.txtPort.Text = "7496";
             // 
@@ -92,7 +94,7 @@
             this.txtClientId.MaxLength = 0;
             this.txtClientId.Name = "txtClientId";
             this.txtClientId.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtClientId.Size = new System.Drawing.Size(241, 19);
+            this.txtClientId.Size = new System.Drawing.Size(241, 20);
             this.txtClientId.TabIndex = 2;
             this.txtClientId.Text = "0";
             // 
@@ -107,7 +109,7 @@
             this.txtHostIP.MaxLength = 0;
             this.txtHostIP.Name = "txtHostIP";
             this.txtHostIP.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtHostIP.Size = new System.Drawing.Size(241, 19);
+            this.txtHostIP.Size = new System.Drawing.Size(241, 20);
             this.txtHostIP.TabIndex = 0;
             // 
             // Label3

@@ -1,4 +1,5 @@
-﻿using System;
+﻿// ported by bweisl on 2013.06.13
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -47,6 +48,25 @@ namespace CSharpSampleApplicationPort
         public dlgConnect()
         {
             InitializeComponent();
+        }
+
+        // ========================================================
+        // Button Events
+        // ========================================================
+        private void cmdOk_Click(object sender, EventArgs e)
+        {
+            m_hostIP = txtHostIP.Text;
+            m_port = Convert.ToInt32(txtPort.Text);
+            m_clientId = Convert.ToInt32(txtClientId.Text);
+            m_ok = true;
+
+            this.Hide();
+        }
+
+        private void cmdCancel_Click(object sender, EventArgs e)
+        {
+            m_ok = false;
+            this.Hide();
         }
     }
 }
