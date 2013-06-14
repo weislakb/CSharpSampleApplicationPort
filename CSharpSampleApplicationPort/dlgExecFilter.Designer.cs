@@ -186,6 +186,7 @@
             this.cmdCancel.TabIndex = 18;
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
+            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
             // cmdOk
             // 
@@ -200,6 +201,7 @@
             this.cmdOk.TabIndex = 16;
             this.cmdOk.Text = "Ok";
             this.cmdOk.UseVisualStyleBackColor = false;
+            this.cmdOk.Click += new System.EventHandler(this.cmdOk_Click);
             // 
             // lblClientId
             // 
@@ -317,6 +319,7 @@
             this.Controls.Add(this.lblAction);
             this.Name = "dlgExecFilter";
             this.Text = "dlgExecFilter";
+            this.Load += new System.EventHandler(this.dlgExecFilter_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

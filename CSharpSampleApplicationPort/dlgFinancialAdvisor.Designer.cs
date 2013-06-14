@@ -119,6 +119,7 @@
             this.cmdClose.TabIndex = 7;
             this.cmdClose.Text = "Accept Edits";
             this.cmdClose.UseVisualStyleBackColor = false;
+            this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
             // 
             // Frame2
             // 
