@@ -167,6 +167,36 @@
     <EmbeddedResource Include="dlgConnect.resx">
       <DependentUpon>dlgConnect.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="dlgExecFilter.resx">
+      <DependentUpon>dlgExecFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgFinancialAdvisor.resx">
+      <DependentUpon>dlgFinancialAdvisor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgLogConfig.resx">
+      <DependentUpon>dlgLogConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgNewsBulletins.resx">
+      <DependentUpon>dlgNewsBulletins.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgOrder.resx">
+      <DependentUpon>dlgOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgOrderAttribs.resx">
+      <DependentUpon>dlgOrderAttribs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgScanner.resx">
+      <DependentUpon>dlgScanner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgServerResponse.resx">
+      <DependentUpon>dlgServerResponse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgSharesAlloc.resx">
+      <DependentUpon>dlgSharesAlloc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgUnderComp.resx">
+      <DependentUpon>dlgUnderComp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
