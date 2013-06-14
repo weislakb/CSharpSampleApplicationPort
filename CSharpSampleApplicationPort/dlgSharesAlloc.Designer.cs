@@ -73,6 +73,7 @@
             this.cmdOK.TabIndex = 11;
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
+            this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
             // cmdCancel
             // 
@@ -87,6 +88,7 @@
             this.cmdCancel.TabIndex = 12;
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
+            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
             // txtFaGroup
             // 

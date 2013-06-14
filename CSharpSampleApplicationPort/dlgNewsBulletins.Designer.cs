@@ -51,6 +51,7 @@
             this.cmdSubscribe.TabIndex = 8;
             this.cmdSubscribe.Text = "Subscribe";
             this.cmdSubscribe.UseVisualStyleBackColor = false;
+            this.cmdSubscribe.Click += new System.EventHandler(this.cmdSubscribe_Click);
             // 
             // Frame1
             // 
@@ -123,6 +124,7 @@
             this.cmdClose.TabIndex = 6;
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = false;
+            this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
             // 
             // cmdUnsubscribe
             // 
@@ -137,6 +139,7 @@
             this.cmdUnsubscribe.TabIndex = 5;
             this.cmdUnsubscribe.Text = "UnSubscribe";
             this.cmdUnsubscribe.UseVisualStyleBackColor = false;
+            this.cmdUnsubscribe.Click += new System.EventHandler(this.cmdUnsubscribe_Click);
             // 
             // dlgNewsBulletins
             // 
@@ -149,6 +152,7 @@
             this.Controls.Add(this.cmdUnsubscribe);
             this.Name = "dlgNewsBulletins";
             this.Text = "dlgNewsBulletins";
+            this.Load += new System.EventHandler(this.dlgNewsBulletins_Load);
             this.Frame1.ResumeLayout(false);
             this.ResumeLayout(false);
 

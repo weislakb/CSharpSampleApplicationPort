@@ -42,8 +42,7 @@ namespace CSharpSampleApplicationPort
             CRLFSTR = (char)13 + (char)10; //verify cast output will be equivalent to Chr() output
             lstGroups.Text = faGroupXML.Replace(CRSTR, CRLFSTR);
             lstProfiles.Text = faProfilesXML.Replace(CRSTR, CRLFSTR);
-            lstAliases.Text = faAliasesXML.Replace(CRSTR, CRLFSTR);
-            faAliasesXML.Replace(
+            lstAliases.Text = faAliasesXML.Replace(CRSTR, CRLFSTR);            
             m_ok = false;
         }
         public Object ok()

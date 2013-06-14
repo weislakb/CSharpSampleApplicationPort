@@ -90,6 +90,7 @@
             this.CancelButton_Renamed.TabIndex = 4;
             this.CancelButton_Renamed.Text = "Cancel";
             this.CancelButton_Renamed.UseVisualStyleBackColor = false;
+            this.CancelButton_Renamed.Click += new System.EventHandler(this.CancelButton_Renamed_Click);
             // 
             // OKButton
             // 
@@ -104,6 +105,7 @@
             this.OKButton.TabIndex = 3;
             this.OKButton.Text = "OK";
             this.OKButton.UseVisualStyleBackColor = false;
+            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
             // 
             // dlgLogConfig
             // 

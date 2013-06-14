@@ -92,6 +92,7 @@
             this.cmdOk.Size = new System.Drawing.Size(67, 23);
             this.cmdOk.TabIndex = 0;
             this.cmdOk.Text = "OK";
+            this.cmdOk.Click += new System.EventHandler(this.cmdOk_Click);
             // 
             // cmdCancel
             // 
@@ -102,6 +103,7 @@
             this.cmdCancel.Size = new System.Drawing.Size(67, 23);
             this.cmdCancel.TabIndex = 2;
             this.cmdCancel.Text = "Cancel";
+            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
             // cmdReset
             // 
@@ -112,6 +114,7 @@
             this.cmdReset.Size = new System.Drawing.Size(67, 23);
             this.cmdReset.TabIndex = 1;
             this.cmdReset.Text = "Reset";
+            this.cmdReset.Click += new System.EventHandler(this.cmdReset_Click);
             // 
             // Label1
             // 
